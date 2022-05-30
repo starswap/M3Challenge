@@ -1,0 +1,138 @@
+        % "The discriminator - many teams will do something, while only a few will have striking results"
+    
+    
+        \subsection{Problem Statement}
+        % State the problem and describe how you "redefined" it - and also maybe a single sentence before that on why it is important.
+        In this section of the challenge, we are asked to "synthesize [our] models from the first two questions to create a model which, for a given city, estimates the percentage of workers who will work remotely." \\ \\
+        This should work for 2024 and 2027 in the same cities considered previously, namely  Seattle, Omaha, Scranton, Liverpool, and Barry, and then be used to determine a relative ranking for the different cities of the impact of remote working on them. 
+        
+        \subsection{Assumptions and Justifications}
+            \begin{enumerate}[label={3.\arabic*.}]
+                % All assumptions made in the model must be stated and justified. Do this in the following way:
+                % \item creates a new bullet point for the new assumption
+                % \assume{The thing you are assuming}{The justification for this assumption}
+                % So overall write this: \item \assume{assumption}{justification}
+
+                \item \assume{There are no major changes to the population demographic between now and 2027}{It is reasonable to assume that there will not be any significant changes to the factors that affect the population demographic. This includes percentage of population that are of working age to be constant and there will be no net change in migration, as well as things like ethnicity and education levels as we have used current data to make predictions about these values for the future. This is reasonable as 2024 and 2027 are not that far away.}
+                
+                \item \assume{The impact of house size on working from home can be modelled as 90\% of people having the housing space and bandwidth to work from home.}{Due to a lack of time and consistent data we make this general assumption for all of the cities considered.}
+                
+                \item{Within each sex, for example, each ethnicity is distributed in the same way as it is for the whole population. i.e. ethnicity and sex and the other ways the population is to be divided are independent.}{This is a reasonable assumption to make because we don't have a breakdown of the individual characteristics of each person. As we generate a large random population the impact of this evens out.}
+
+            \end{enumerate}
+     
+             
+        \subsection{Analysing the Problem}  
+            It is valuable to take a moment to understand the characteristics of what we have developed so far and what we need for this part. While Part I of the problem studies, on the level of cities and their industries, the proportion of jobs being "work from home ready", Part II asks on the individual level whether someone who can work from home will do so. \\ \\ For Part III we require a model which will, on the city level, determine the proportion of people who will actually work from home. Hence this leads us to the plan of using a simple agent-based model to combine the individual and whole city characteristics. We will use results from Part I to identify the number of people in each industry in each city in 2024 and 2027, then use a Monte Carlo simulation to create a profile for each member of the population of each city. Each profile can be run through the model from Part II to produce a probability of the given person working from home, and using a random variable we can count them in or out. Then summing for the whole population allows us to obtain percentages. 
+            
+        \subsection{Defining Variables \& Constant Parameters} 
+            \subsubsection{Identifying Variables and Determining Constant Values}
+                %Explain here which variables/constants you thought were important when modelling this part of the problem and why they are important, how you came about identifying them and their values, and which ones you discarded or didn't include and why.
+                % Detailed description of them and justification for why they are included (can use bps - itemize)
+                As we rely on the model from section 2 to identify the work from home preferences of a given individual, we use the same input data to as we used there for each person. 
+                
+            \subsubsection{Table of Variables/Constants}
+                % To summarise all of the choices made.
+                % All tables should have a title, a header, a label, and a caption.
+                \begin{table}[h!]
+                  \begin{center}
+                    \label{tab:variables3} % Use this to create a label for the table so you can later reference it with \ref
+                    \begin{tabular}{|c|c|p{5cm}|c|c|} % Defines where vertical lines appear and the column alignment left centre or right
+                      \toprule 
+                       \textbf{Type} & \textbf{Symbol} & \textbf{Definition} & \textbf{Value} & \textbf{Units} \\
+                      \midrule 
+                      Variable & $N_{I,C,T}$ & The number of people in industry I in city C at time T. As in Part I & - & 1000 people  \\ % & used to separate cells in a row; \\ used to separate rows.
+                      \bottomrule 
+                    \end{tabular}
+                    \caption{Summary of Problem 3 Variables \& Constant Parameters}                
+                  \end{center}
+                \end{table}
+            
+
+            
+        \subsection{Developing the Model}  
+            %Describe mathematical approaches and..
+            %..Justify modelling used, including the use of technical computing. Why does it make sense?
+            % Motivate and fully explain the use of any complicated mathematical expressions.
+            % Teams should justify the use of technical computing. That is, it must be clear why the team leveraged a computer program instead of just a calculator
+            % Teams should include a summary of the purpose and key features of their code. 
+            % If an outside library or method is used in a black-box way, it should be clear that the team understands the method’s functionality, and can justify why it was chosen. 
+
+            %%*******REALLY IMPORTANT TO JUSTIFY THE MODELLING USED - why are you choosing each method?
+            
+            We use a Monte Carlo simulation in which we determine the expected population in 2024 and 2027 of each of the cities investigated. For each member of the population, we generate a Person object so that overall the characteristics of the employees match the summary statistics for the town. This generation is performed with the recursiveGen algorithm, which takes a number of people it must generate, a city, and a year. It splits the population in half for each sex, then calls itself to split each of these groups into sections for ethnicity based on the relevant city's ethnicity percentages and so on for all of the other factors. At the base case, it has generated a value for all of the attributes of the Person class so it instantiates a number of Person objects equal to amount. It calls the Part II model on these people and sums the results to give a total number of people working from home in 2024 and 2027 for each city. This is then converted to a percentage in each case.
+        
+
+        \subsection{Applying the Model (Results)}  
+            % Considering any situations given to us in the question
+            % And if none are given, make up some input data into the Model
+
+            Using this model we achieve the following results for the percentage of people working from home:
+                \begin{table}[h!]
+                  \begin{center}
+                    \label{tab:resultsFinal} % Use this to create a label for the table so you can later reference it with \ref
+                    \begin{tabular}{|c|c|c|c|c|} % Defines where vertical lines appear and the column alignment left centre or right
+                      \toprule 
+                       \textbf{Result Year} & \textbf{2024 predictions} & \textbf{2024 ranking} & \textbf{2027 predictions} & \textbf{2027 ranking} \\
+                      \midrule 
+                      Barry & 26.51\% & 4th & 26.59\% & 5th  \\
+                      Liverpool & 27.37\% & 3rd & 29.13\% & 3rd  \\
+                      Omaha & 29.07\% & 2nd & 29.26\% & 2nd  \\
+                      Seattle & 30.73\% & 1st & 32.45\% & 1st  \\
+                      Scranton & 26.36\% & 5th & 26.63\% & 4th  \\
+                        
+                      \bottomrule 
+                    \end{tabular}
+                    \caption{Summary of Problem 3 Results for 2024 \& 2027}                
+                  \end{center}
+                \end{table}
+                
+            As is to be expected, the most technological city on Earth is to be most revolutionised by remote working, while a small town in Wales where the main industries have always been mining and fishing \cite{barryStory} serves less to benefit. This suggests that as a country if we desire fairness and equality of opportunity we should invest more in remote working capacity for smaller towns like Barry.
+            
+        \subsection{Evaluating the Model}
+            
+            \subsubsection{Validation: Testing for Accuracy}
+                % How accurate are the results? Can we use a separate dataset for which we have the "right answer" to check?
+                The model returns a plausible result. The latest ONS figures suggest that 30\% of working adults work from home either partially or exclusively \cite{ONS3}. A modest increase on pre-pandemic levels is to be expected.
+            
+            \subsubsection{Sensitivity Analysis: Testing for Stability and Sensitivity to Assumptions}
+                % Sensitivity analysis can be done by taking constants and varying them by +/- n%; use a table for this perhaps.
+                % discussion of how the model can be tested for accuracy, stability, and sensitivity to assumptions.
+                % Think about what real world factors could lead to changes to a certain parameter value, and then address the effects of those changes on the model.           
+                % Remember that you can reference previously defined assumptions with the \label (on defining) and \ref (to reference) commands. 
+                Due to time constraints we could only perform this analysis on 2024 results
+                \begin{table}[h!]
+                  \begin{center}
+                    \label{tab:variables1} % Use this to create a label for the table so you can later reference it with \ref
+                    \begin{tabular}{|p{4cm}|c|c|c|c|c|c|} % Defines where vertical lines appear and the column alignment left centre or right
+                      \toprule 
+                       \textbf{$\Delta$ Pandemic Correction Constant} & \textbf{Barry} & \textbf{Liverpool} & \textbf{Omaha} & \textbf{Seattle} & \textbf{Scranton}& \textbf{Average}\\
+                      \midrule 
+                      +10\% & +9.7\% & +9.8\% & +9.9\% & +9.8\% & +9.7\% & +9.78\%\\
+                       +5\%  & +4.5\% & +4.9\% & +4.9\% & +4.8\% & +4.6\% & +4.74\% \\ 
+                       -5\% & -4.8\% & -4.7\% & -5.0\% & -4.7\% & -5.1\% & -4.86\%\\
+                       -10\% & -9.7\% & -10.0\% & -9.9\% & -9.9\% & -9.9\% & -9.88\%\\
+                      \bottomrule 
+                    \end{tabular}
+                    \caption{Sensitivity Analysis for Model 3} 
+                  \end{center}
+                \end{table}
+                It is desirable for the impact of changing model assumptions to be as low as possible so that if they are wrong, the model is not rendered useless. The most obvious assumption made here was the choice of 1.4 for the pandemic correction constant. We see that varying this changes the percentage of people working from home in the expected way, with change magnitude always less than or equal to the change in the constant $c$ which is good.
+                
+    
+            \subsubsection{Model Strengths}
+                The model inputs a wide range of factors including population and job demographics which means the model can be used for any city with such data values, Furthermore all predicted results are between 26\% and 34\% which is similar to current levels and significantly above pre-pandemic levels.
+            \subsubsection{Model Weaknesses}
+                The main weakness of the model is that it is complicated and requires a lot of data about each of the places. It was time consuming to format all of this data for each place and sector correctly for the program, so extending the model to other places would be painful.
+            
+        \subsection{Extending the Model}
+            % Further research that could be performed if we had extra time
+            % Creativity, good work, and acknowledging where you fall short and what you would have done with more time is valued. The judges are particularly interested in each team’s approach and methods.
+            
+            If we had more time we would:
+            \begin{itemize}
+                \item Perform greater validation on this model to ensure that it is accurate, by removing and varying other assumptions and parameters to identify the impact.
+                \item Simplify the model or factor out some of the data so it can be more easily extended to other cities.
+            \end{itemize}
+        
+        

@@ -1,3 +1,5 @@
+#Example 1: To solve a transposition cipher using the SimAnneal library
+
 #It tends to be the later transpositions that use this method. Use other program - transposition AUTO Row if it's read off by row
 #This program will automatically run through all possible keys up to length ten, using the read off by columns method This is the method employed by Practical and by default by dcode.fr.
 

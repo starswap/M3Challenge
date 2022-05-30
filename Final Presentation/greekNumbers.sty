@@ -1,0 +1,61 @@
+
+\makeatletter
+ \newcommand*\greek[1]{\expandafter\@greek\csname c@#1\endcsname}
+
+\newcommand*\@greek[1]{%\symbol{
+  {%
+    \ifcase#1%\relax
+    \or
+    $\alpha$
+    \or
+    $\beta$
+    \or
+    $\gamma$
+    \or
+    $\delta$
+    \or
+    $\epsilon$
+    \or
+    $\zeta$
+    \or
+    $\eta$
+    \or
+    $\theta$ 
+    \or
+    $\iota$
+    \or
+    $\kappa$
+    \or
+    $\lambda$
+    \or
+    $\mu$
+    \or
+    $\nu$
+    \or
+    $\xi$
+    \or
+    $\omikron$
+    \or
+    $\rho$
+    \or
+    $\pi$
+    \or
+    $\sigma$
+    \or
+    $\tau$
+    \or
+    $\upsilon$
+    \or
+    $\phi$
+    \or
+    $\chi$
+    \or
+    $\psi$
+    \or
+    $\omega$
+    \fi}}
+    
+% make @ other again:
+\makeatother
+
+\renewcommand{\theequation}{\greek{equation}}

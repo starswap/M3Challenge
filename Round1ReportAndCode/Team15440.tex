@@ -1,0 +1,201 @@
+%% M3 Challenge Report Document
+%% To add a source, use bibme.org/bibtex to generate a bibtex format citation and paste it into main.bib under the other citations then recompile the document.
+%% To reference it in the text use \cite{NAME PLACED INSIDE BRACKETS IN BIB FILE e.g. DUMMY:1}. This ensures that if you create a new reference that comes before it, the reference numbers update automatically.
+
+%% Any lines starting with a % sign are ignored and can be used to write a comment, or you can use the speech bubble to the left. Make use of this feature as it is something you can't do in Google Docs so it validates use of LaTeX ;)
+%% Please check your work by activating the spellchecker in the top right corner. Simply select English and then when a word is underlined, click it and press Alt-Enter to see suggestions.
+
+%% Acceptable to research existing models as long as additional insight is provided on top of them
+%% If possible try to preserve indentation - after every begin{} there should be an extra tab on the new line and remove a tab after every end. You can tab a bunch of lines in one go by highlighting and pressing tab.
+
+% Judges will be considering the following Discretionary Points
+%   Team examined a wider set of circumstances.
+%   Team used a creative problem solving perspective.
+%   Team made connections between all three parts and the overall driving question.
+%   Paper is exceptionally well written/organized.
+%   Detailed sensitivity analysis is presented.
+%   Model verification is performed.
+%   Strengths and weaknesses are addressed.
+%   Effective and well-motivated use of technical computing
+
+
+% Please check: https://m3challenge.siam.org/sites/default/files/uploads/M3%20Challenge_Scoring%20Guide_generic-FINAL13SEPT2021.pdf
+% Technical Computing Award. Solutions that receive the award must demonstrate an outstanding use of computing to advance the team’s model or to reveal its implications (including via advanced model and data visualization).
+
+% Page limit is 20 pages not including the Appendix
+% May need to rethink the use of \newpage command if too many pages. Do that at the end
+
+%CHECKERS OF THE REPORT:
+% Points to check through at the end:
+    % Are all figures and tables captioned and numbered, and then referenced later in the text?
+    % Spelling and grammar (use spellchecker in the top right)
+    % Excluding the appendix, is the report less than or equal to 20 pages?
+    % Have we removed any dummy/template text such as the dummy citation in the bibliography and the template code at the bottom to avoid any loss of professionalism?
+    % Are units given to all variables?
+    % Every single assumption must be justified (make up a justification which sounds legit if necessary)
+    % Are all sections completed including conclusion etc.?
+    % Are there any numerical typos (numbers which look wrong)?
+    % Are all models analysed in terms of their strengths and weaknesses? 
+    % Are all sources cited?
+    % When a source is cited have we made it clear exactly what tables / data / ideas etc. were used from that source?
+    % When code is used, have we made sure that it is fully explained / referenced inside the relevant section rather than just being dumped at the bottom with a "check the appendix" comment? - They are big on saying that "the code is not a model; the theory behind the code is". Therefore it's important that all algorithms are well explained. If necessary resort to a flowchart.
+    % Are there any coding mistakes/typos
+    % A comment we received last year: " The model on the whole would have benefited greatly from some data validation." - do we see any points in the model where we could add a sentence or two to explain what we did to validate the input or output data for the model? i.e. are we performing sufficient model analysis?
+    % Check all headings and subheadings are correct based on the content of the section and that none have been missed out.
+    % Look for any references that don't work right. these come up as ?? in the pdf.
+
+\documentclass{mthree}
+
+\author{Team 15440} % ****Provide only your team ID #. Do NOT include your school name, any student names, or any other identifying information in your solution paper.
+\title{Remote Work: \textit{Fad or Future?}}
+\date{February 26, 2022}
+
+\usepackage{booktabs} % For prettier tables
+\usepackage{graphicx} % To enable images to be inserted
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+%\usepackage{hyperref}
+
+\graphicspath{ {images/} }
+
+\setlist[enumerate,2]{label*=\arabic*.}
+
+
+\begin{document}
+    \maketitle \thispagestyle{fancy}
+
+    
+    \section{Executive Summary}
+        % not more than one page in length.
+        % This is one of the most important parts of the document as judges "will not read past a poorly written summary"
+        % Reserve 1 hour for one person just for writing and perfecting this at the end of the time.
+        % P1 : Context, motivation, general problem overview. Challenge associated with the problem context - why is it difficult? Motivations. Spark curiosity and make the reader eager to see what you did. Why is the problem important? Does part 1 indicate that part 2 is important for example? CITE SOURCES TO FILL UP BIBLIOGRAPHY
+        % P2 : Problem Part 1 - overview of the question, your methods (mathematical approaches), your results and what they mean in context in terms of recommendations
+        % P3 : Problem Part 2 - overview of the question, your methods  (mathematical approaches), your results and what they mean in context in terms of recommendations
+        % P4 : Problem Part 3 - overview of the question, your methods  (mathematical approaches), your results and what they mean in context in terms of recommendations
+        % https://m3challenge.siam.org/sites/default/files/uploads/CHAMPION_14817.pdf for reference
+        % use \\ to get the new paragraph
+        
+        %"what we think should be taken away from this model"
+        % https://m3challenge.siam.org/sites/default/files/uploads/Team_12038_FINAL.pdf
+        
+        % executive summary - results and recommendations
+        % Overview of the problem (all three parts).
+        % Brief description of the mathematical approaches that will be used.
+        % Provide and discuss a summary of the results (even if they are incorrect). You do need your results.
+        % Recommendations made as a result of the model
+        % Start by setting the question in context
+        
+        % Use big words and make it flow nicely
+        % ***Free of technical maths jargon (problem context jargon ok I think)
+        % What is the challenge associated with the problem - i.e. why is it difficult?
+        % motivations and conclusions
+        %Its introduction should spark curiosity and make the reader eager to see what you did. 
+
+        %problem you were solving, methods and conclusions
+
+        % P1 : Context, motivation, general problem overview. Challenge associated with the problem context - why is it difficult? Motivations. Spark curiosity and make the reader eager to see what you did. Why is the problem important? Does part 1 indicate that part 2 is important for example? CITE SOURCES TO FILL UP BIBLIOGRAPHY
+        % P2 : Problem Part 1 - overview of the question, your methods (mathematical approaches), your results and what they mean in context in terms of recommendations
+        % P3 : Problem Part 2 - overview of the question, your methods  (mathematical approaches), your results and what they mean in context in terms of recommendations
+        % P4 : Problem Part 3 - overview of the question, your methods  (mathematical approaches), your results and what they mean in context in terms of recommendations
+       
+       Nobody could doubt that the global coronavirus pandemic has led to radical shifts in work patterns. According to the ONS \cite{ONS}, the proportion of people working from home increased by a phenomenal 10 percent points from 27\% to 37\% from 2019 to 2020. But even before this, trends towards homeworking were on the rise, from only 22.0\% in the US in 2005 to 25.0\% in 2013. While working from home offers substantial benefits such as an improved work life balance \cite{ONS}, it can lead to reductions in productivity - undesirable for employers.
+       \\ \\
+       In this paper, our team investigates how the trends towards homeworking can be applied into the future, in a post pandemic society. We apply our models for the percentage of jobs that can be done from home and that \textit{will} be done from home to 5 cities: Scranton (PA), Seattle (WA), Omaha (NE), Liverpool (England), and Barry (Wales), in the hope that this important research can be used to improve sustainable policy making in the US and UK alike.\\
+      
+       In Part I of the problem, we are asked to determine the percentage of jobs in the 5 given cities. We divide the labour market within each city into 10 main sectors and make use of an exponential regression model to track the relative proportions of each sector in each city's labour market over time. From this and an estimated proportion of jobs in each sector that can be performed remotely, we achieve results of around 40\% of jobs being able to be completed remotely in each of the cities, with the maximum being for Seattle, which we believe to be logical considering Seattle, home of Amazon, is one of the most technological cities\\
+       
+       In Part II, we are asked to determine for a given worker who can work from home, whether they will actually work from home, considering the likelihood that they want to work from home and that they are allowed to work remotely. Based on a variety of demographic factors, we make use of a model derived from conditional probability to estimate the percentage chance for a given worker that they work from home. This can be compared to the critical value of 0.5 to yield a binary result for a given worker. We give a white male IT Worker aged 40 63\% chance of working from home, for example.  
+       \\\\
+       In Part III a fusion of the models for jobs (Part I) and for individuals (Part II) in the form of a Monte Carlo simulation is employed based on projected demographics of each town or city to obtain the expected proportion of remote workers. We obtain results ranging from 26.5\% for Barry in 2024 (logical as Barry is not as technologically developed as some regions in the UK, and 2024 is only 2 years away), to 32.5\% for Seattle in 2027.
+       \\\\
+       As a result, we make the policy recommendation for the Prime Minister that working from home will remain a substantial part of the UK and US work-forces. He must consider it in future labour policies, and the impact of improved technology on the propensity to work from home should be factored into his levelling up agenda. 
+      
+
+        
+        % https://m3challenge.siam.org/sites/default/files/uploads/CHAMPION_14817.pdf
+    
+    \newpage %starts a new page, as you may expect.
+    \setcounter{tocdepth}{2}
+    \tableofcontents
+    \newpage
+    
+    \section{Introduction}    
+        In this paper we provide an in-depth analysis of post pandemic working trends in the US and UK, from the proportion of people that are in remote-ready jobs in different towns and cities, to the proportion who will actually take the plunge and leave the office in the near future.
+        
+    \section{Global Assumptions}
+        Throughout this paper we make the following global assumption:
+
+        % All assumptions made in the model must be stated and justified. Do this in the following way:
+        % \item creates a new bullet point for the new assumption
+        % \assume{The thing you are assuming}{The justification for this assumption}
+        % So overall write this: \item \assume{assumption}{justification}
+        
+        \begin{enumerate}[label={G.\arabic*.}]
+            \item \label{G:partialwork} \assume{Working from home is defined as working from home at least 1 day per week.}{We have recently seen a rise in hybrid working models in which working from home occurs one day a week, to complement existing models where you either work from home the whole time or not at all. As the problems generally concern themselves with whether a given person "works from home" or a given job can be done "remotely" we are free to choose whether we include these hybrid models. Their inclusion under an umbrella "work from home" term simplifies the scenario to make it more tractable, without reducing the accuracy of the models too much, since exactly how much a person works from home is much easier to change than going fully from the office to home or vice versa.}  
+            % list of possible human(non mathematical) assumptions:
+
+            % there are no major innovations in technology that allow people to work from home more easily.
+            %there is no major event that forces people to work from home(ie to force real life business online)
+            % no major change in rate of change of population (countries continue to grow at about the present rate)
+            
+        \end{enumerate}
+
+        
+    %To avoid the file getting too large, I have moved the content for each problem out to a separate file, which gets automatically included into this one, using the \input command
+    \newpage
+    \section{Part I: Ready or Not}
+        \input{problem1} %To write the report for problem1, write it in the problem1.tex file
+      
+    \section{Part II: Remote Control}
+        \input{problem2} %To write the report for problem2, write it in the problem2.tex file
+        
+    \section{Part III: Just a Little Home-work}
+        \input{problem3} %To write the report for problem3, write it in the problem3.tex file
+        
+    \section{Joining the Dots: Conclusions}
+        %   Team made connections between all three parts and the overall driving question.
+        %   Analyses results, discusses model strengths, weaknesses and areas which can be improved
+    
+       In this paper, we investigated how trends towards homeworking can be applied into the future, in a post pandemic society. In Part I of the problem, we are asked to determined the percentage of jobs that can work remotely in the 5 given cities, achieving results of around 40\% of jobs being able to be completed remotely in each city, which is consistent with other data. In Part II, we identified for a given worker who can work from home, whether they will actually work from home, considering the likelihood that they want to work from home and that they are allowed to work remotely. For example, we gave a white male IT Worker aged 40 63\% chance of working from home, for example. In Part III a fusion of the models for jobs (Part I) and for individuals (Part II) in the form of a Monte Carlo simulation was employed based on projected demographics of each town or city to obtain the expected proportion of remote workers. Results ranging from 26.5\% for Barry in 2024 32.5\% for Seattle in 2027 were logical.
+       \\ \\
+       As a result of our work, we make the policy recommendation for the Prime Minister that working from home will remain a substantial part of the UK and US work-forces. He must consider it in future labour policies, and the impact of improved technology on the propensity to work from home should be factored into his levelling up agenda. 
+    \newpage
+    \section{References} % To add a source, go to the main.bib file and copy the dummy entry and replace the field values with the appropriate values.
+        \nocite{keyes_2021} % Sources that you refer to but you don't want to reference anywhere particular in the document - you need to use the \nocite command otherwise they WILL NOT appear in the bibliography
+        \nocite{given_data} % if we cite elsewhere then remove this,.
+        \begingroup
+            \renewcommand{\section}[2]{} % Prevents double reference titles.
+            \bibliography{main}
+            \bibliographystyle{plain}            
+        \endgroup
+      
+       % When citing outside sources, clearly explain what statistics, models, equations, or insights you took from each source.
+    
+    \newpage
+    \section{Appendix: Code Listing for Technical Computing Consideration}
+        % Ensure code is commented! 
+        % "some code commenting, meaningful variable names, and appropriate use of functions and code-reuse will make it easier for judges to understand what a program is doing and how it contributes to the team's model."
+        % EXPLAIN THE ALGORITHM INSIDE THE TEXT OF THE REPORT
+        
+        %Teams should justify the use of technical computing. That is, it must be clear why the team leveraged a computer program instead of just a calculator.
+        %Teams should include a summary of the purpose and key features of their code.
+        %If an outside library or method is used in a black-box way, it should be clear that the team understands the method’s functionality, and can justify why it was chosen.
+        
+        \subsection{Part II}
+            \textbf{dataONS.py}
+            \lstinputlisting{code/dataONS.py} %% Replace with actual code file name! Upload file into the code folder and then duplicate this command to paste your code in.
+            \newpage
+            \textbf{Question2.py}
+            \lstinputlisting{code/Question2.py} %% Replace with actual code file name! Upload file into the code folder and then duplicate this command to paste your code in.
+            
+            \newpage
+        \subsection{Part III}
+            \textbf{Question3.py}
+            \lstinputlisting{code/Question3.py} %% Replace with actual code file name! Upload file into the code folder and then duplicate this command to paste your code in.
+        
+
+
+
+\end{document}
